@@ -7,11 +7,12 @@
     [ok] Implemetar base HTML da aplicação.
     [ok] Implementar interface da aplicação.
     [ok] Implementar script basico.
-    [] Implementar verificação em tabela para dar resultado.
+    [ok] Implementar verificação em tabela para dar resultado.
     [] Implementar sistema de verificação de idade para consulta de idade diferentes.
     [] Implementar sistema de cookie para salvar resultados de consultas na maquina por tempo.
     [] Implementar backend da aplicação para armazenar os dados de consulta.
     [] Implementar algoritmo no backend para identificar tendencias.
+    [] Implementar sistema de verificação de tipo de valor.
 
 -->
 
@@ -20,7 +21,23 @@
         var pesoPessoa = parseFloat(document.getElementById('peso').value);
         var alturaPessoa = parseFloat(document.getElementById('altura').value);
         var imcPessoa = pesoPessoa / (alturaPessoa * alturaPessoa);
-        document.getElementById('resultado').value = imcPessoa;
+        if (imcPessoa < 17) {
+            document.getElementById('resultado').value = 'Você esta muito abaixo do peso.';
+        } else if (imcPessoa >= 17 && imcPessoa < 18.5) {
+            document.getElementById('resultado').value = 'Você esta abaixo do peso.';
+        } else if (imcPessoa >= 18.5 && imcPessoa < 25) {
+            document.getElementById('resultado').value = 'Você esta com peso normal.';
+        } else if (imcPessoa >= 25 && imcPessoa < 30) {
+            document.getElementById('resultado').value = 'Você esta acima do peso.';
+        } else if (imcPessoa >= 30 && imcPessoa < 35) {
+            document.getElementById('resultado').value = 'Você esta acima do peso (obesidade 1).';
+        } else if (imcPessoa >= 35 && imcPessoa < 40) {
+            document.getElementById('resultado').value = 'Você esta acima do peso (obesidade 2 - severa).';
+        } else if (imcPessoa >= 40) {
+            document.getElementById('resultado').value = 'Você esta acima do peso (obesidade 3 - morbida).';
+        } else {
+            document.getElementById('resultado').value = 'Houve algum erro. Tente novamente.'
+        }
     }
 </script>
 
@@ -72,10 +89,6 @@
         /* flex-shrink: 0; */
         /* flex-basis: auto; */
         align-self: stretch;
-    }
-
-    label {
-        
     }
 
     .input {
